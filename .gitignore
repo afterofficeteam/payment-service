@@ -1,4 +1,13 @@
-*.idea
-.vscode
+# files to ignore
+.env
 
-config.yaml
+# directories to ignore
+.idea
+.vscode
+logs
+tmp
+
+# executables to ignore
+main.exe
+crowners-app.exe
+crowners-app
