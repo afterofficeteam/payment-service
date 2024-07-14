@@ -5,6 +5,7 @@ import (
 	"base-project/routes"
 	"database/sql"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/thedevsaddam/renderer"
 )
 
@@ -26,12 +27,13 @@ func main() {
 	}
 	defer sqlDb.Close()
 
+	validator := validator.New()
 	render := renderer.New()
-	routes := setupRoutes(render, sqlDb)
+	routes := setupRoutes(render, sqlDb, validator)
 	routes.Run(cfg.AppPort)
 }
 
-func setupRoutes(render *renderer.Render, myDb *sql.DB) *routes.Routes {
+func setupRoutes(render *renderer.Render, myDb *sql.DB, validator *validator.Validate) *routes.Routes {
 
 	return &routes.Routes{}
 }
