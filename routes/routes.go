@@ -1,10 +1,10 @@
 package routes
 
 import (
-	"base-project/config"
-	"base-project/util/helper"
 	"log"
 	"net/http"
+	"payment-service/config"
+	"payment-service/util/helper"
 	"time"
 
 	"github.com/gorilla/mux"

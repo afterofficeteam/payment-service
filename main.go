@@ -1,11 +1,15 @@
 package main
 
 import (
-	"base-project/config"
-	"base-project/routes"
 	"database/sql"
+	"payment-service/config"
+	"payment-service/routes"
 
 	"github.com/go-playground/validator/v10"
+
+	handler "payment-service/handlers"
+	repo "payment-service/repository"
+	svc "payment-service/services"
 )
 
 func main() {
@@ -32,6 +36,9 @@ func main() {
 }
 
 func setupRoutes(myDb *sql.DB, validator *validator.Validate) *routes.Routes {
+	store := repo.NewStore(myDb)
+	services := svc.Newsvc(store)
+	handler := handler.NewHandler(services, validator)
 
 	return &routes.Routes{}
 }

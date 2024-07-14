@@ -1,10 +1,10 @@
 package middleware
 
 import (
-	"base-project/util/helper/jwt"
 	"context"
 	"encoding/json"
 	"net/http"
+	"payment-service/util/helper/jwt"
 )
 
 const emailKey = "email"
