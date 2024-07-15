@@ -21,7 +21,7 @@ func RunSeed(cmd *flag.FlagSet, args []string) {
 	}
 
 	adapter.Adapters.Sync(
-		adapter.WithShopeefunProductPostgres(),
+		adapter.WithShopeefunPaymentPostgres(),
 	)
 	defer func() {
 		if err := adapter.Adapters.Unsync(); err != nil {
@@ -29,5 +29,5 @@ func RunSeed(cmd *flag.FlagSet, args []string) {
 		}
 	}()
 
-	seeds.Execute(adapter.Adapters.ShopeefunProductPostgres, *table, *total)
+	seeds.Execute(adapter.Adapters.ShopeefunPaymentPostgres, *table, *total)
 }

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"payment-service/internal/infrastructure"
 	"payment-service/internal/integration/midtrans/entity"
 
 	"github.com/rs/zerolog/log"
@@ -23,15 +24,26 @@ func NewMidtransContract() MidtransContract {
 }
 
 func (m *midtrans) CreatePayment(ctx context.Context, req *entity.CreatePaymentRequest) (entity.CreatePaymentResponse, error) {
-	log.Debug().Any("request", req).Msg("create payment request")
-	var response entity.CreatePaymentResponse
+	var (
+		response    entity.CreatePaymentResponse
+		midtransCfg        = infrastructure.Envs.Midtrans
+		envCfg      string = infrastructure.Envs.App.Environtment
+		ChargeURL   string
+	)
+
+	if envCfg == "production" {
+		ChargeURL = midtransCfg.Production.ChargeURL
+	} else {
+		ChargeURL = midtransCfg.Sandbox.ChargeURL
+	}
 
 	bytesReq, err := json.Marshal(req)
 	if err != nil {
 		log.Error().Err(err).Msg("failed to marshal request")
 		return response, err
 	}
-	request, err := http.NewRequest(http.MethodPost, "https://api.sandbox.midtrans.com/v2/charge", bytes.NewBuffer(bytesReq))
+
+	request, err := http.NewRequest(http.MethodPost, ChargeURL, bytes.NewBuffer(bytesReq))
 	if err != nil {
 		log.Error().Err(err).Msg("failed to create request")
 		return response, err

@@ -27,13 +27,21 @@ type Config struct {
 	Guard struct {
 		JwtPrivateKey string `env:"JWT_PRIVATE_KEY"`
 	}
-	ShopeefunProductPostgres struct {
-		Host     string `env:"SHOPEEFUN_PRODUCT_POSTGRES_HOST" env-default:"localhost"`
-		Port     string `env:"SHOPEEFUN_PRODUCT_POSTGRES_PORT" env-default:"5432"`
-		Username string `env:"SHOPEEFUN_PRODUCT_POSTGRES_USER" env-default:"postgres"`
-		Password string `env:"SHOPEEFUN_PRODUCT_POSTGRES_PASSWORD" env-default:"postgres"`
-		Database string `env:"SHOPEEFUN_PRODUCT_POSTGRES_DB" env-default:"venatronics"`
-		SslMode  string `env:"SHOPEEFUN_PRODUCT_POSTGRES_SSL_MODE" env-default:"disable"`
+	ShopeefunPaymentPostgres struct {
+		Host     string `env:"SHOPEEFUN_PAYMENT_POSTGRES_HOST" env-default:"localhost"`
+		Port     string `env:"SHOPEEFUN_PAYMENT_POSTGRES_PORT" env-default:"5432"`
+		Username string `env:"SHOPEEFUN_PAYMENT_POSTGRES_USER" env-default:"postgres"`
+		Password string `env:"SHOPEEFUN_PAYMENT_POSTGRES_PASSWORD" env-default:"postgres"`
+		Database string `env:"SHOPEEFUN_PAYMENT_POSTGRES_DB" env-default:"venatronics"`
+		SslMode  string `env:"SHOPEEFUN_PAYMENT_POSTGRES_SSL_MODE" env-default:"disable"`
+	}
+	Midtrans struct {
+		Production struct {
+			ChargeURL string `env:"MIDTRANS_PRODUCTION_CHARGE_URL" env-default:"https://api.midtrans.com/v2/charge"`
+		}
+		Sandbox struct {
+			ChargeURL string `env:"MIDTRANS_SANDBOX_CHARGE_URL" env-default:"https://api.sandbox.midtrans.com/v2/charge"`
+		}
 	}
 }
 

@@ -25,7 +25,7 @@ type Adapter struct {
 	RestServer *fiber.App
 
 	// Driven Adapters
-	ShopeefunProductPostgres *sqlx.DB
+	ShopeefunPaymentPostgres *sqlx.DB
 	Validator                Validator // *validator.Validator
 }
 
@@ -46,8 +46,8 @@ func (a *Adapter) Unsync() error {
 		log.Info().Msg("Rest server disconnected")
 	}
 
-	if a.ShopeefunProductPostgres != nil {
-		if err := a.ShopeefunProductPostgres.Close(); err != nil {
+	if a.ShopeefunPaymentPostgres != nil {
+		if err := a.ShopeefunPaymentPostgres.Close(); err != nil {
 			errs = append(errs, err.Error())
 		}
 		log.Info().Msg("Crowners Postgres disconnected")

@@ -74,7 +74,7 @@ func RunServer(cmd *flag.FlagSet, args []string) {
 
 	adapter.Adapters.Sync(
 		adapter.WithRestServer(app),
-		adapter.WithShopeefunProductPostgres(),
+		adapter.WithShopeefunPaymentPostgres(),
 		adapter.WithValidator(validator.NewValidator()),
 	)
 

@@ -11,14 +11,14 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func WithShopeefunProductPostgres() Option {
+func WithShopeefunPaymentPostgres() Option {
 	return func(a *Adapter) {
-		dbUser := infrastructure.Envs.ShopeefunProductPostgres.Username
-		dbPassword := infrastructure.Envs.ShopeefunProductPostgres.Password
-		dbName := infrastructure.Envs.ShopeefunProductPostgres.Database
-		dbHost := infrastructure.Envs.ShopeefunProductPostgres.Host
-		dbSSLMode := infrastructure.Envs.ShopeefunProductPostgres.SslMode
-		dbPort := infrastructure.Envs.ShopeefunProductPostgres.Port
+		dbUser := infrastructure.Envs.ShopeefunPaymentPostgres.Username
+		dbPassword := infrastructure.Envs.ShopeefunPaymentPostgres.Password
+		dbName := infrastructure.Envs.ShopeefunPaymentPostgres.Database
+		dbHost := infrastructure.Envs.ShopeefunPaymentPostgres.Host
+		dbSSLMode := infrastructure.Envs.ShopeefunPaymentPostgres.SslMode
+		dbPort := infrastructure.Envs.ShopeefunPaymentPostgres.Port
 
 		dbMaxPoolSize := infrastructure.Envs.DB.MaxOpenCons
 		dbMaxIdleConns := infrastructure.Envs.DB.MaxIdleCons
@@ -37,10 +37,10 @@ func WithShopeefunProductPostgres() Option {
 		// check connection
 		err = db.Ping()
 		if err != nil {
-			log.Fatal().Err(err).Msg("Error connecting to Shopeefun Product Postgres")
+			log.Fatal().Err(err).Msg("Error connecting to Shopeefun Payment Postgres")
 		}
 
-		a.ShopeefunProductPostgres = db
-		log.Info().Msg("Shopeefun Product Postgres connected")
+		a.ShopeefunPaymentPostgres = db
+		log.Info().Msg("Shopeefun Payment Postgres connected")
 	}
 }

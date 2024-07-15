@@ -103,7 +103,7 @@ func isStrongPassword(fl validator.FieldLevel) bool {
 }
 
 func isExist(fl validator.FieldLevel) bool {
-	db := adapter.Adapters.ShopeefunProductPostgres
+	db := adapter.Adapters.ShopeefunPaymentPostgres
 	fieldValue := fl.Field().String()
 	tagValue := fl.Param()
 
